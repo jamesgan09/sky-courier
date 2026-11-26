@@ -64,7 +64,7 @@ export function autopilot(world) {
   const pitch = Math.max(-1, Math.min(1, (wantPitch - f.pitch) * 3));
   // Bank into the turn; ease off when lined up. No banking while climbing
   // out. The bank is capped gentle: a steep bank reads as out of control.
-  const roll = climbingOut ? 0 : Math.max(-0.65, Math.min(0.65, headingErr * 1.6));
+  const roll = climbingOut ? 0 : Math.max(-0.5, Math.min(0.5, headingErr * 1.6));
   // Throttle: full when climbing or far, gentle on final approach.
   let throttle = 0.7;
   if (!target) throttle = 0.4;

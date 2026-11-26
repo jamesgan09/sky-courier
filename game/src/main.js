@@ -64,6 +64,9 @@ if (shot) {
   updateHud(world.flight, world);
   // Render many frames: the chase camera eases toward the plane, and one
   // frame leaves it near the runway. 120 frames settle it behind the plane.
+  // (The play shot stays on the chase view: the cockpit camera sits inside
+  // the nose cone's silhouette at this plane's scale, so it reads as a
+  // blank tan frame instead of a view over the nose.)
   for (let i = 0; i < 120; i += 1) renderFrame(built, world, 'chase', 1 / 60, i / 60);
   document.title = `Sky Courier — ${shot}`;
   // Debug hook: the render script reads the staged state from here.

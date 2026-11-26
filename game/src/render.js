@@ -67,11 +67,13 @@ function updateChaseCamera(camera, f, dt) {
   camera.rotateZ(f.roll * 0.12);
 }
 
-/** Cockpit camera: at the canopy, looking down the nose. */
+/** Cockpit camera: at the canopy top, looking down the nose over it. */
 function updateCockpitCamera(camera, f) {
   const fw = forwardOf(f);
-  camera.position.set(f.x + fw.x * 1.5, f.y + 1.1, f.z + fw.z * 1.5);
-  camera.lookAt(f.x + fw.x * 60, f.y + fw.y * 60, f.z + fw.z * 60);
+  // The canopy sits at local (0, 0.9, 2.4) and the fuselage top is y 1.5,
+  // so the eye must be above y 1.5 or the fuselage fills the frame.
+  camera.position.set(f.x + fw.x * 2.4, f.y + 2.0, f.z + fw.z * 2.4);
+  camera.lookAt(f.x + fw.x * 60, f.y + fw.y * 60 + 1, f.z + fw.z * 60);
   camera.rotateZ(f.roll * 0.35);
 }
 
